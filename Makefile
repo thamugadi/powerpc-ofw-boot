@@ -10,12 +10,15 @@ APMdisk: kernel.elf bootinfo.txt kpartx.sh
 	sudo cp kernel.elf /mnt/boot
 	sudo umount /mnt/
 	sudo kpartx -d APMdisk
-
+bootinfo.txt: load.fs
+	echo "<chrp-boot><boot-script>" >> bootinfo.txt
+	cat load.fs >> bootinfo.txt
+	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 kernel.elf: boot.elf
 	$(PPC)-ld -Ttext=0x200000 boot.elf -o kernel.elf
 boot.elf:
 	$(PPC)-gcc -c boot.S -o boot.elf
 clear:
-	rm APMdisk *elf
+	rm APMdisk *elf *txt
 clean:
-	rm APMdisk *elf
+	rm APMdisk *elf *txt
