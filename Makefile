@@ -16,7 +16,7 @@ bootinfo.txt: load.fs
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 kernel.elf: boot.elf
 	$(PPC)-ld -Ttext=0x200000 boot.elf -o kernel.elf
-boot.elf:
+boot.elf: boot.S
 	$(PPC)-gcc -c boot.S -o boot.elf
 clear:
 	rm APMdisk *elf *txt
