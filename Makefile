@@ -14,7 +14,7 @@ APMdisk: kernel.elf bootinfo.txt kpartx.sh
 kernel.elf: boot.elf
 	$(PPC)-ld -Ttext=0x200000 boot.elf -o kernel.elf
 boot.elf:
-	$(PPC)-linux-gnu-gcc -c boot.S -o boot.elf
+	$(PPC)-gcc -c boot.S -o boot.elf
 clear:
 	rm APMdisk *elf
 clean:
