@@ -1,7 +1,7 @@
-APMdisk: kernel.elf bootinfo.txt
+APMdisk: kernel.elf bootinfo.txt kpartx.sh
         dd bs=8M count=2 if=/dev/zero of=APMdisk
         parted APMdisk --script mklabel mac mkpart primary hfs+ 32.8KB 100%
-        sudo chmod +x kpartx.bash
+        sudo chmod +x kpartx.sh
         sudo ./kpartx.bash
         sudo mkdir /mnt/ppc
         sudo mkdir /mnt/boot
