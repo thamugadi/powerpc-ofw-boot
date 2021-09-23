@@ -1,7 +1,7 @@
 PPC=powerpc-linux-gnu
-APMdisk: kernel.elf bootinfo.txt kpartx.sh
-	dd bs=8M count=2 if=/dev/zero of=APMdisk
-	parted APMdisk --script mklabel mac mkpart primary hfs+ 32.8KB 100%
+DISK.APM: kernel.elf bootinfo.txt kpartx.sh
+	dd bs=8M count=2 if=/dev/zero of=DISK.APM
+	parted DISK.APM --script mklabel mac mkpart primary hfs+ 32.8KB 100%
 	sudo chmod +x kpartx.sh
 	sudo ./kpartx.sh
 	sudo mkdir /mnt/ppc
@@ -9,16 +9,16 @@ APMdisk: kernel.elf bootinfo.txt kpartx.sh
 	sudo cp bootinfo.txt /mnt/ppc
 	sudo cp kernel.elf /mnt/boot
 	sudo umount /mnt/
-	sudo kpartx -d APMdisk
+	sudo kpartx -d DISK.APM
 bootinfo.txt: load.fs
 	echo "<chrp-boot><boot-script>" >> bootinfo.txt
 	cat load.fs >> bootinfo.txt
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
-kernel.elf: boot.elf
-	$(PPC)-ld -Ttext=0x200000 boot.elf -o kernel.elf
+kernel.elf: boot.elf boot1.elf
+	$(PPC)-ld -Ttext=0x200000 boot.elf boot1.elf -o kernel.elf
+boot1.elf: boot.c
+	$(PPC)-gcc -c boot.c -o boot1.elf
 boot.elf: boot.S
-	$(PPC)-gcc -c boot.S -o boot.elf
-clear:
-	rm APMdisk *elf *txt
+	$(PPC)-as -c boot.S -o boot.elf
 clean:
-	rm APMdisk *elf *txt
+	rm DISK.APM *elf *txt
