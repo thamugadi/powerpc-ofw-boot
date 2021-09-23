@@ -4,4 +4,4 @@ Produces a HFS+ disk image formatted with Apple Partition Map partition scheme, 
 
 Run it with QEMU :
 
-```make && qemu-system-ppc APMdisk```
+```make && qemu-system-ppc DISK.APM```
