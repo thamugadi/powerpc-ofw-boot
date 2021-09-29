@@ -1,7 +1,6 @@
-12
-12
-*
-.
 ." Booting through OpenFirmware..." cr
-." Loading: hd:,\boot\kernel.elf" cr
+frame-buffer-adr
+.
+: rep dup 0 do i . loop ;
+500 rep
 boot hd:,\boot\kernel.elf
