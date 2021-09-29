@@ -1,4 +1,4 @@
-# powerpc-boot
+# powerpc-ofw-boot
 Boots through OpenFirmware.
 Produces a HFS+ disk image formatted with Apple Partition Map partition scheme, compatible with old PowerPC-based Macs.
 
