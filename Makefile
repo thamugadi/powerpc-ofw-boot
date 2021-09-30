@@ -16,7 +16,7 @@ bootinfo.txt: load.fth
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 kernel.elf: start.elf boot.elf 
 	$(PPC)-ld -Ttext=0x200000 start.elf boot.elf -o kernel.elf
-boot.elf: boot.c memory.h 
+boot.elf: boot.c 
 	$(PPC)-gcc -c boot.c -o boot.elf
 start.elf: start.s
 	$(PPC)-as -c start.s -o start.elf
