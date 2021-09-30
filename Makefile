@@ -14,12 +14,12 @@ bootinfo.txt: load.fth
 	echo "<chrp-boot><boot-script>" >> bootinfo.txt
 	cat load.fth >> bootinfo.txt
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
-kernel.elf: boot0.elf boot1.elf 
-	$(PPC)-ld -Ttext=0x200000 boot0.elf boot1.elf -o kernel.elf
-boot1.elf: boot.c
-	$(PPC)-gcc -c boot.c -o boot1.elf
-boot0.elf: boot.S
-	$(PPC)-as -c boot.S -o boot0.elf
+kernel.elf: start.elf boot.elf 
+	$(PPC)-ld -Ttext=0x200000 start.elf boot.elf -o kernel.elf
+boot.elf: boot.c memory.h 
+	$(PPC)-gcc -c boot.c -o boot.elf
+start.elf: start.s
+	$(PPC)-as -c start.s -o start.elf
 clean:
 	rm DISK.APM *elf *txt 
 run:
