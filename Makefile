@@ -10,20 +10,20 @@ DISK.APM: kernel.elf bootinfo.txt kpartx.sh
 	sudo cp kernel.elf /mnt/boot
 	sudo umount /mnt/
 	sudo kpartx -d DISK.APM
-bootinfo.txt: load.fs
+bootinfo.txt: load.fth
 	echo "<chrp-boot><boot-script>" >> bootinfo.txt
-	cat load.fs >> bootinfo.txt
+	cat load.fth >> bootinfo.txt
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
-kernel.elf: boot.elf boot1.elf 
-	$(PPC)-ld -Ttext=0x200000 boot.elf boot1.elf -o kernel.elf
+kernel.elf: boot0.elf boot1.elf 
+	$(PPC)-ld -Ttext=0x200000 boot0.elf boot1.elf -o kernel.elf
 boot1.elf: boot.c
 	$(PPC)-gcc -c boot.c -o boot1.elf
-boot.elf: boot.S
-	$(PPC)-as -c boot.S -o boot.elf
+boot0.elf: boot.S
+	$(PPC)-as -c boot.S -o boot0.elf
 clean:
 	rm DISK.APM *elf *txt 
 run:
-	qemu-system-ppc DISK.APM
+	qemu-system-ppc -M mac99 DISK.APM
 debug:
 	qemu-system-ppc DISK.APM -d in_asm
 all:
