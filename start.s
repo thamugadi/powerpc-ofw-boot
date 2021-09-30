@@ -1,3 +1,3 @@
 .globl _start
 _start: 
-b begin 
+b main 
