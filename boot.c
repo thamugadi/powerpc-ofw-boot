@@ -57,11 +57,6 @@ void clearscreen(unsigned char a, unsigned char b)
 void noisescreen(void)
 {
 	init();
-	switch(IO_TYPE)
-	{
-		case beige: p_vram = __VRAM__BEIGE;
-		case mac99: p_vram = __VRAM__MAC99;
-	}
 	for (unsigned int i = 0; i<0x200000; i++)
 	{
 		*p_vram = *(p_bios+0x2F0000+i);
