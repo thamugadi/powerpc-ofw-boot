@@ -1,4 +1,3 @@
 .globl _start
-_start:
-addi 1,1,1
+_start: 
 b begin 
