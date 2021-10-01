@@ -10,16 +10,16 @@ DISK.APM: kernel.elf bootinfo.txt kpartx.sh
 	sudo cp kernel.elf /mnt/boot
 	sudo umount /mnt/
 	sudo kpartx -d DISK.APM
-bootinfo.txt: load.fth
+bootinfo.txt: loader/load.fth
 	echo "<chrp-boot><boot-script>" >> bootinfo.txt
-	cat load.fth >> bootinfo.txt
+	cat loader/load.fth >> bootinfo.txt
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 kernel.elf: start.elf boot.elf 
 	$(PPC)-ld -Ttext=0x200000 start.elf boot.elf -o kernel.elf
-boot.elf: boot.c 
-	$(PPC)-gcc -c boot.c -o boot.elf
-start.elf: start.s
-	$(PPC)-as -c start.s -o start.elf
+boot.elf: entry/boot.c 
+	$(PPC)-gcc -c entry/boot.c -o boot.elf
+start.elf: entry/start.s
+	$(PPC)-as -c entry/start.s -o start.elf
 clean:
 	rm DISK.APM *elf *txt 
 run:
