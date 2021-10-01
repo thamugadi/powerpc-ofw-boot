@@ -11,9 +11,13 @@
 variable run 
 -1 run !
 
+fba 100 dump
+
 fba beige-vram = if  ." Beige" cr 7000 0 do 0BE i beige-vram + c! loop then 
 fba mac99-vram = if  ." mac99" cr 7000 0 do 05A i mac99-vram + c! loop then
 fba beige-vram diff fba mac99-vram diff and if  ." Hardware not supported." cr 0 run ! then
+
+fba 100 dump
 
 run @ 0 = if 1 0 do 0 +loop then
 
