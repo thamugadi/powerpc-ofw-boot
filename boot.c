@@ -6,11 +6,9 @@
 #define __BIOS__MAC99 0xFFF00000
 
 
-
 unsigned char IO_TYPE;
 unsigned char* p_vram;
 unsigned char* p_bios;
-
 
 
 void get_io_type(void)
