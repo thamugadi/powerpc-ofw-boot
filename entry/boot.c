@@ -36,6 +36,7 @@ void main(void)
 {
 	get_io_type();
 	init();
+	clearscreen(0xAA,0xBB);
 	for(;;);
 }
 
