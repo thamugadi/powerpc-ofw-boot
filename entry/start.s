@@ -1,3 +1,4 @@
 .globl _start
 _start: 
-b main 
+li 1, 0xac
+b main
