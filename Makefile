@@ -1,3 +1,4 @@
+MACHINE=mac99
 PPC=powerpc-linux-gnu
 QEMU=qemu-system-ppc
 DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
@@ -24,8 +25,8 @@ start.elf: entry/start.s
 clean:
 	rm *.APM *elf *txt 
 run:
-	$(QEMU) *.APM -g 1024x768x32
+	$(QEMU) *.APM -g 1280x768x32 -machine $(MACHINE)
 debug:
-	$(QEMU) *.APM -d in_asm -g 1024x768x32
+	$(QEMU) *.APM -d in_asm -g 1280x768x32 -machine $(MACHINE)
 all:
 	make clean && make && make run
