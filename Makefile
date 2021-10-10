@@ -1,6 +1,8 @@
 MACHINE=mac99
 PPC=powerpc-linux-gnu
 QEMU=qemu-system-ppc
+RES=1280x768x32
+
 DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
 	dd bs=512K count=2 if=/dev/zero of=DISK.APM
 	parted DISK.APM --script mklabel mac mkpart primary hfs+ 32.8KB 100%
@@ -25,8 +27,8 @@ start.elf: entry/start.s
 clean:
 	rm *.APM *elf *txt 
 run:
-	$(QEMU) *.APM -g 1280x768x32 -machine $(MACHINE)
+	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE)
 debug:
-	$(QEMU) *.APM -d in_asm -g 1280x768x32 -machine $(MACHINE)
+	$(QEMU) -hda *.APM -d in_asm -g $(RES) -machine $(MACHINE)
 all:
 	make clean && make && make run
