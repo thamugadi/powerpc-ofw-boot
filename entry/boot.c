@@ -1,15 +1,17 @@
-#define beige         0xBE
-#define mac99         0x5A
-#define __VRAM__BEIGE 0x80000000
-#define __VRAM__MAC99 0x81000000
-#define __BIOS__BEIGE 0xFFC00000
-#define __BIOS__MAC99 0xFFF00000
+#define beige                   0xBE
+#define mac99                   0x5A
 
+#define __VRAM__BEIGE           0x80000000
+#define __BIOS__BEIGE           0xFFC00000
 
-unsigned char IO_TYPE;
+#define __VRAM__MAC99           0x81000000
+#define __BIOS__MAC99           0XFFF00000
+#define __USB_KEYBOARD__MAC99   0x80080038
+#define __USB_MOUSE__MAC99      0x8008003C
+
+unsigned char  IO_TYPE;
 unsigned char* p_vram;
 unsigned char* p_bios;
-
 
 void get_io_type(void)
 {
@@ -21,9 +23,7 @@ void init(void)
 {
 	if (IO_TYPE == beige)
 	{
-                p_vram = __VRAM__BEIGE;
-		p_bios = __BIOS__BEIGE;
-
+		for(;;); // unsupported yet.
 	}
 	else if (IO_TYPE == mac99)
 	{
@@ -36,29 +36,23 @@ void main(void)
 {
 	get_io_type();
 	init();
-	clearscreen(0xAA,0xBB);
+	clearscreen(100,85,100, 0x100000);
 	for(;;);
 }
 
-void clearscreen(unsigned char a, unsigned char b)
+void clearscreen(unsigned char a, unsigned char b, unsigned char c, int n)
 {
 	init();
-	for (unsigned int i = 0; i<0x100000; i++)
+	for (unsigned int i = 0; i<n; i++)
 	{
-		*p_vram = a; 
+		//24-bit VGA
+		*p_vram = 0;
 		p_vram++;
-		*p_vram = b; 
+		*p_vram = a;
 		p_vram++;
-	}
-}
-
-void noisescreen(void)
-{
-	init();
-	for (unsigned int i = 0; i<0x200000; i++)
-	{
-		*p_vram = *(p_bios+0x2F0000+i);
+		*p_vram = b;
 		p_vram++;
-
+		*p_vram = c;
+		p_vram++;
 	}
 }
