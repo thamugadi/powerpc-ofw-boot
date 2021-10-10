@@ -38,7 +38,7 @@ void main(void)
 	//fillscreen(85,100,85, 0x100000);
 	for(;;) 
 	{
-		memcpy_24bit(0x81000000, 0x82200000, 0xFF00,1);
+		memcpy(0x81000000, 0x81000001, 0x10000);
 	}
 	
 }
