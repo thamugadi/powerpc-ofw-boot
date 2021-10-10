@@ -36,7 +36,10 @@ void main(void)
 	get_io_type();
 	init();
 	//fillscreen(85,100,85, 0x100000);
-	for(;;) memcpy(0x81000000, 0, 100000);
+	for(;;) 
+	{
+		memcpy_24bit(0x81000000, 0x82200000, 0xFF00,1);
+	}
 	
 }
 
@@ -64,7 +67,26 @@ void memcpy(unsigned char* dest, unsigned char* src, int n)
 	for (int i = 0; i<n; i++)
 	{
 		*destination = *source;
-		destination++;
+		destination++; source++;
+	}
+}
+
+void memcpy_24bit(unsigned char* dest, unsigned char* src, int n, int size)
+{
+        unsigned char* destination = dest;
+        unsigned char* source = src;
+        for (int i = 0; i<n; i++)
+        {
+		for (int k = 0; k < size; k++)
+		{
+			*destination = 0;
+			destination++; 
+                	for (int j = 0; j < 3; j++)
+			{
+				*destination = *source;
+				destination++;
+			}
+        	}
 		source++;
 	}
 }
