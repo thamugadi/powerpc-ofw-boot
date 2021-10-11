@@ -6,12 +6,13 @@
 
 #define __VRAM__MAC99           0x81000000
 #define __BIOS__MAC99           0XFFF00000
+#define __MOUSE__MAC99          0x8008003C
 
 unsigned char  IO_TYPE;
 unsigned char* p_vram;
 unsigned char* p_bios;
-unsigned char* p_usb_keyboard;
-unsigned char* p_usb_mouse;
+unsigned char* p_keyboard;
+unsigned char* p_mouse;
 void get_io_type(void)
 {
         if (*(unsigned char*)__VRAM__BEIGE == beige) IO_TYPE = beige;
@@ -28,6 +29,7 @@ void init(void)
 	{
 		p_vram = __VRAM__MAC99;
 		p_bios = __BIOS__MAC99;
+		p_mouse=__MOUSE__MAC99;
 	}
 }
 
@@ -38,7 +40,7 @@ void main(void)
 	//fillscreen(85,100,85, 0x100000);
 	for(;;) 
 	{
-		memcpy(0x81000000, 0x81000001, 0x10000);
+		memcpy_24bit(0x81000000, p_mouse, 0x1, 0x100000);
 	}
 	
 }

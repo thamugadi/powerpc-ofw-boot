@@ -18,5 +18,7 @@ fba mac99-vram = if ." mac99"   cr 100 0 do 05A i mac99-vram + c! loop then
 fba beige-vram diff fba mac99-vram diff and if hardware-error cr 0 run ! then
 
 run @ 0 = if 1 0 do 0 +loop then
-
+80080000 100 dump
+80080000 100 dump
+80080000 100 dump
 boot hd:,\boot\kernel.elf

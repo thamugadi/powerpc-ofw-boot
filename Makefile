@@ -27,7 +27,7 @@ start.elf: entry/start.s
 clean:
 	rm *.APM *elf *txt 
 run:
-	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE)
+	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE) 
 debug:
 	$(QEMU) -hda *.APM -d in_asm -g $(RES) -machine $(MACHINE)
 all:
