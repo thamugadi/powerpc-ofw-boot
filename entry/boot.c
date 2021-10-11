@@ -7,7 +7,7 @@
 #define __VRAM__MAC99           0x81000000
 #define __BIOS__MAC99           0XFFF00000
 #define __MOUSE__MAC99          0x8008003C
-
+#define __KEYBOARD__MAC99       0x80080038
 unsigned char  IO_TYPE;
 unsigned char* p_vram;
 unsigned char* p_bios;
@@ -30,6 +30,7 @@ void init(void)
 		p_vram = __VRAM__MAC99;
 		p_bios = __BIOS__MAC99;
 		p_mouse=__MOUSE__MAC99;
+		p_keyboard=__KEYBOARD__MAC99;
 	}
 }
 
@@ -37,11 +38,7 @@ void main(void)
 {
 	get_io_type();
 	init();
-	//fillscreen(85,100,85, 0x100000);
-	for(;;) 
-	{
-		memcpy_24bit(0x81000000, p_mouse, 0x1, 0x100000);
-	}
+	for(;;)	memcpy_24bit(0x81000000, p_mouse, 1, 0x100000);
 	
 }
 
@@ -91,4 +88,14 @@ void memcpy_24bit(unsigned char* dest, unsigned char* src, int n, int size)
         	}
 		source++;
 	}
+}
+
+unsigned char u8_extract_bit(unsigned char n, unsigned char bit)
+{
+        return (n & (0b10000000 >> bit)) >> (7 - bit);
+}
+
+unsigned char u32_extract_bit(unsigned int n, unsigned char bit)
+{
+	return (n & (0x80000000 >> bit)) >> (31 - bit);
 }
