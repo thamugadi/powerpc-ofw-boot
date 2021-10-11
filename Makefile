@@ -1,4 +1,4 @@
-MACHINE=mac99,via=pmu
+MACHINE=mac99
 PPC=powerpc-linux-gnu
 QEMU=qemu-system-ppc
 RES=1280x768x32
