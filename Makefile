@@ -1,8 +1,7 @@
 MACHINE=mac99
 PPC=powerpc-linux-gnu
 QEMU=qemu-system-ppc
-RES=1280x768x32
-
+RES=1360x720x32
 DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
 	dd bs=512K count=2 if=/dev/zero of=DISK.APM
 	parted DISK.APM --script mklabel mac mkpart primary hfs+ 32.8KB 100%
