@@ -1,6 +1,5 @@
 #include "boot.h"
 void __stack_chk_fail_local(void){}
-
 void get_io_type(void)
 {
         if (*(unsigned char*)__VRAM__BEIGE == beige) IO_TYPE = beige;
@@ -47,8 +46,8 @@ void main(void)
         {
 		if (IO_TYPE == mac99)
 		{
-			random = (*p_bios );
-                	if (!(random%3)) universe[i][j] = 1;
+			random = (*p_timer + *p_bios);
+                	if (!(random%7)) universe[i][j] = 1;
         		else universe[i][j] = 0;
 			p_bios++;
 		}
@@ -63,7 +62,8 @@ void main(void)
 	for(;;)	
 	{
 		init();
-		memcpy(p_vram, p_vram+511, 400000);
+		memcpy(p_vram, p_vram+255, 400000);
+
 		p_vram += 400000;
 		for (i = 0; i < N; i++) for (j = 0; j < N; j++)
 		{
@@ -103,7 +103,6 @@ void main(void)
 
 		}
                 for (i = 0; i < N; i++) for (j = 0; j < N; j++) universe[i][j] = universe2[i][j];
-
 	}
 }
 
@@ -124,22 +123,6 @@ void fillscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned c
 	}
 }
 
-void colorscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned char c, int n)
-{
-        unsigned char* ptr = addr;
-        for (unsigned int i = 0; i<n; i++)
-        {
-                //24-bit VGA
-                *ptr = a;
-                ptr++;
-		*ptr = b;
-                ptr++;
-                ptr++;
-		*ptr = 0;
-                ptr++;
-        }
-
-}
 void memcpy(unsigned char* dest, unsigned char* src, int n)
 {
 	unsigned char* destination = dest;

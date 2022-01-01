@@ -23,5 +23,4 @@ void fillscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned c
 void memcpy(unsigned char* dest, unsigned char* src, int n);
 unsigned char u8_extract_bit(unsigned char n, unsigned char bit);
 unsigned char u32_extract_bit(unsigned int n, unsigned char bit);
-void colorscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned char c, int n);
 
