@@ -5,3 +5,5 @@ Produces a HFS+ disk image formatted with Apple Partition Map partition scheme, 
 Run it with QEMU :
 
 ```make && make run```
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/yy2iXljHSJQ/0.jpg)](https://www.youtube.com/watch?v=yy2iXljHSJQ "Video Title")
