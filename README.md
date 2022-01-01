@@ -8,4 +8,4 @@ Run it with QEMU :
 
 Pixel-level Game of Life running through it:
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/yy2iXljHSJQ/0.jpg)](https://www.youtube.com/watch?v=yy2iXljHSJQ "Video Title")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/RkmhK-y5j7M/0.jpg)](https://www.youtube.com/watch?v=RkmhK-y5j7M"Video Title")
