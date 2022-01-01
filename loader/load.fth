@@ -11,6 +11,9 @@
 fba beige-vram = if ." Beige hardware detected" cr 0BE beige-vram c! then 
 fba mac99-vram = if ." mac99 hardware detected" cr 05A mac99-vram c! then
 
+." Running Game of Life: " cr
+
+
 fba beige-vram = if screen-width  4 beige-vram + l! then
 fba beige-vram = if screen-height 8 beige-vram + l! then
 

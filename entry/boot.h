@@ -3,7 +3,7 @@
 
 #define __VRAM__BEIGE           0x80000000
 #define __BIOS__BEIGE           0xFFC00000
-#define __TIMR__BEIGE           0x1badc0de //later
+#define __TIMR__BEIGE           0x81080038 
 #define __VRAM__MAC99           0x81000000
 #define __BIOS__MAC99           0xFFF00000
 #define __TIMR__MAC99           0x80080038

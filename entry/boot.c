@@ -42,20 +42,32 @@ void main(void)
 	unsigned int random;
 	unsigned char universe[N][N];
 	unsigned char universe2[N][N];
+	unsigned char* junk_beige = 0x81040000;
 	for (i = 0; i < N; i++) for (j = 0; j < N; j++)
         {
-		random = (*p_timer );
-                if (!(random%3)) universe[i][j] = 1;
-                else universe[i][j] = 0;
-		p_bios++;
+		if (IO_TYPE == mac99)
+		{
+			random = (*p_bios );
+                	if (!(random%3)) universe[i][j] = 1;
+        		else universe[i][j] = 0;
+			p_bios++;
+		}
+		else if (IO_TYPE == beige)
+		{
+			random = (*junk_beige);
+                        if (!(random%3)) universe[i][j] = 1;
+                        else universe[i][j] = 0;
+			junk_beige++;
+		}
         }
 	for(;;)	
 	{
 		init();
+		p_vram += 100000*4;
 		for (i = 0; i < N; i++) for (j = 0; j < N; j++)
 		{
 			if (universe[i][j]) fillscreen(p_vram, 255,255,255,1);
-			else fillscreen(p_vram,200 ,110,50,1);
+			else fillscreen(p_vram,200 ,210,5,1);
 			p_vram+=4;
 		}
 		for (i = 0; i < N; i++) for (j = 0; j < N; j++) universe2[i][j] = universe[i][j];
