@@ -5,3 +5,5 @@ Produces a HFS+ disk image formatted with Apple Partition Map partition scheme, 
 Run it with QEMU :
 
 ```make && make run```
+
+Game of Life running through it : https://www.youtube.com/watch?v=RkmhK-y5j7M
