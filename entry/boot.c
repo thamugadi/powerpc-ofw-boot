@@ -134,11 +134,3 @@ void memcpy(unsigned char* dest, unsigned char* src, int n)
 	}
 }
 
-unsigned char u8_extract_bit(unsigned char n, unsigned char bit)
-{
-	return (n & (0b10000000 >> bit)) >> (7 - bit);
-}
-unsigned char u32_extract_bit(unsigned int n, unsigned char bit)
-{
-	return (n & (0x80000000 >> bit)) >> (31 - bit);
-}
