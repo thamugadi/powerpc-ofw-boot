@@ -27,6 +27,9 @@ clean:
 	rm *.APM *elf *txt 
 run:
 	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE) 
+beige:
+	$(QEMU) -hda *.APM -g $(RES) -machine g3beige
+
 debug:
 	$(QEMU) -hda *.APM -d in_asm -g $(RES) -machine $(MACHINE)
 all:
