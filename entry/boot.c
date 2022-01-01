@@ -63,7 +63,8 @@ void main(void)
 	for(;;)	
 	{
 		init();
-		p_vram += 100000*4;
+		memcpy(p_vram, p_vram+511, 400000);
+		p_vram += 400000;
 		for (i = 0; i < N; i++) for (j = 0; j < N; j++)
 		{
 			if (universe[i][j]) fillscreen(p_vram, 255,255,255,1);
