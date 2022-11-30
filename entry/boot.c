@@ -1,5 +1,6 @@
 #include "boot.h"
 void __stack_chk_fail_local(void){}
+void __eabi(void){} 
 void get_io_type(void)
 {
         if (*(unsigned char*)__VRAM__BEIGE == beige) IO_TYPE = beige;
@@ -36,6 +37,39 @@ void main(void)
 {
 	get_io_type();
 	init();
+	game_of_life();
+}
+
+void fillscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned char c, int n)
+{
+	unsigned char* ptr = addr;
+	for (unsigned int i = 0; i<n; i++)
+	{
+		//24-bit VGA
+		*ptr = a;
+		ptr++;
+		*ptr = b;
+		ptr++;
+		*ptr = c;
+		ptr++;
+		*ptr = 0;
+		ptr++;
+	}
+}
+
+void memcpy(unsigned char* dest, unsigned char* src, int n)
+{
+	unsigned char* destination = dest;
+	unsigned char* source = src;
+	for (int i = 0; i<n; i++)
+	{
+		*destination = *source;
+		destination++; source++;
+	}
+}
+
+void game_of_life(void)
+{
 	int N = screen_width;
 	int i,j,ip1,jp1,nei;
 	unsigned int random;
@@ -105,32 +139,3 @@ void main(void)
                 for (i = 0; i < N; i++) for (j = 0; j < N; j++) universe[i][j] = universe2[i][j];
 	}
 }
-
-void fillscreen(unsigned int* addr, unsigned char a, unsigned char b, unsigned char c, int n)
-{
-	unsigned char* ptr = addr;
-	for (unsigned int i = 0; i<n; i++)
-	{
-		//24-bit VGA
-		*ptr = a;
-		ptr++;
-		*ptr = b;
-		ptr++;
-		*ptr = c;
-		ptr++;
-		*ptr = 0;
-		ptr++;
-	}
-}
-
-void memcpy(unsigned char* dest, unsigned char* src, int n)
-{
-	unsigned char* destination = dest;
-	unsigned char* source = src;
-	for (int i = 0; i<n; i++)
-	{
-		*destination = *source;
-		destination++; source++;
-	}
-}
-

@@ -1,5 +1,5 @@
 MACHINE=mac99
-PPC=powerpc-linux-gnu
+PPC=powerpc-eabi
 QEMU=qemu-system-ppc
 RES=1600x900x32
 DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
