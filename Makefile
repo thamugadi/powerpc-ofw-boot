@@ -13,7 +13,7 @@ DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
 	sudo cp kernel.elf /mnt/boot
 	sudo umount /mnt/
 	sudo kpartx -d DISK.APM
-bootinfo.txt: loader/*.fth
+bootinfo.txt: loader/load.fth loader/def.fth
 	echo "<chrp-boot><boot-script>" >> bootinfo.txt
 	cat loader/def.fth >> bootinfo.txt
 	cat loader/load.fth >> bootinfo.txt
