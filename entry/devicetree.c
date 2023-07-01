@@ -40,7 +40,7 @@ phandle parent(phandle _parent)
         return ofw_arg.ret;
 }
 
-phandle instance_to_package(ihandle _instance)
+phandle instance_to_package(ihandle instance)
 {
         struct
         {
@@ -53,7 +53,7 @@ phandle instance_to_package(ihandle _instance)
 
 	SERVICE("instance-to-package", 20, 1, 1);
 
-        ofw_arg.arg = _instance;
+        ofw_arg.arg = instance;
 
         ofw(&ofw_arg);
         return ofw_arg.ret;
