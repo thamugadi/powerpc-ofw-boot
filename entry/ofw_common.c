@@ -2,15 +2,15 @@
 
 extern void (*ofw)();
 
-int ofw_test(char* name)
+int32_t ofw_test(char* name)
 {
         struct 
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 char* arg;
-                int ret;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("test", 5, 1, 1);

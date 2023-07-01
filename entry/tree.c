@@ -7,8 +7,8 @@ phandle child(phandle _child)
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg;
                 phandle ret;
         } ofw_arg;
@@ -26,8 +26,8 @@ phandle parent(phandle _parent)
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg;
                 phandle ret;
         } ofw_arg;
@@ -45,8 +45,8 @@ phandle instance_to_package(ihandle instance)
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 ihandle arg;
                 phandle ret;
         } ofw_arg;
@@ -59,16 +59,16 @@ phandle instance_to_package(ihandle instance)
         return ofw_arg.ret;
 }
 
-int getproplen(phandle node, char* name)
+int32_t getproplen(phandle node, char* name)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg1;
                 char* arg2;
-                int ret;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("getproplen", 11, 2, 1);
@@ -80,18 +80,18 @@ int getproplen(phandle node, char* name)
         return ofw_arg.ret;
 }
 
-int getprop(phandle node, char* name, uint8_t* buf, int buflen)
+int32_t getprop(phandle node, char* name, uint8_t* buf, int32_t buflen)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg1;
                 char* arg2;
                 uint8_t* arg3;
-                int arg4;
-                int ret;
+                int32_t arg4;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("getprop", 8, 4, 1);
@@ -105,17 +105,17 @@ int getprop(phandle node, char* name, uint8_t* buf, int buflen)
         return ofw_arg.ret;
 }
 
-int nextprop(phandle node, char* previous, uint8_t* buf)
+int32_t nextprop(phandle node, char* previous, uint8_t* buf)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg1;
                 char* arg2;
                 uint8_t* arg3;
-                int ret;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("nextprop", 9, 3, 1);
@@ -128,18 +128,18 @@ int nextprop(phandle node, char* previous, uint8_t* buf)
         return ofw_arg.ret;
 }
 
-int setprop(phandle node, char* name, uint8_t* buf, int len)
+int32_t setprop(phandle node, char* name, uint8_t* buf, int32_t len)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 phandle arg1;
                 char* arg2;
                 uint8_t* arg3;
-                int arg4;
-                int ret;
+                int32_t arg4;
+                int32_t ret;
         } ofw_arg;
 
         char _service[8] = "setprop";
@@ -156,17 +156,17 @@ int setprop(phandle node, char* name, uint8_t* buf, int len)
         return ofw_arg.ret;
 }
   
-int canon(char* device, uint8_t* buf, int buflen)   
+int32_t canon(char* device, uint8_t* buf, int32_t buflen)   
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 char* arg1;
                 uint8_t* arg2;
-                int arg3;
-                int ret;
+                int32_t arg3;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("canon", 6, 3, 1);
@@ -184,10 +184,10 @@ phandle finddevice(char* device)
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 char* arg1;  
-                int ret;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("finddevice", 11, 1, 1);
@@ -198,17 +198,17 @@ phandle finddevice(char* device)
         return ofw_arg.ret;
 }
 
-int instance_to_path(ihandle instance, uint8_t* buf, int buflen)
+int32_t instance_to_path(ihandle instance, uint8_t* buf, int32_t buflen)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 ihandle arg1;
                 uint8_t* arg2;
-                int arg3;
-                int ret;
+                int32_t arg3;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("instance-to-path", 17, 3, 1);
@@ -222,17 +222,17 @@ int instance_to_path(ihandle instance, uint8_t* buf, int buflen)
 
 }
 
-int package_to_path(phandle package, uint8_t* buf, int buflen)
+int32_t package_to_path(phandle package, uint8_t* buf, int32_t buflen)
 {
         struct
         {
                 char* service;
-                int n_args;
-                int n_rets;
+                int32_t n_args;
+                int32_t n_rets;
                 ihandle arg1;
                 uint8_t* arg2;
-                int arg3;
-                int ret;
+                int32_t arg3;
+                int32_t ret;
         } ofw_arg;
 
 	SERVICE("package-to-path", 16, 3, 1);
