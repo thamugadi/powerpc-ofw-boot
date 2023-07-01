@@ -273,14 +273,12 @@ void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n
 
 	ofw(&ofw_arg);
 
-	int32_t* addr = claim(retaddr, 17, 1);
-
-	*addr = ofw_arg.ret1;
+	*retaddr = ofw_arg.ret1;
 	for (i = 1; i < 17; i++)
 	{
-		addr[i] = ofw_arg.retN[i];
+		retaddr[i] = ofw_arg.retN[i];
 	}
 
-	return addr;
+	return retaddr;
 }
 

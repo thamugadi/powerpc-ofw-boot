@@ -27,15 +27,14 @@ void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int32_t* retad
 
         ofw(&ofw_arg);
 
-        int32_t* addr = claim(retaddr, 17, 1);
 
-        *addr = ofw_arg.ret1;
+        *retaddr = ofw_arg.ret1;
         for (i = 1; i < 17; i++)
         {
-                addr[i] = ofw_arg.retN[i];
+                retaddr[i] = ofw_arg.retN[i];
         }
 
-        return addr;
+        return retaddr;
 }
 
 void* set_callback(void* addr)
