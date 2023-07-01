@@ -80,7 +80,7 @@ int32_t getproplen(phandle node, char* name)
         return ofw_arg.ret;
 }
 
-int32_t getprop(phandle node, char* name, uint8_t* buf, int32_t buflen)
+int32_t getprop(phandle node, char* name, void* buf, int32_t buflen)
 {
         struct
         {
@@ -89,7 +89,7 @@ int32_t getprop(phandle node, char* name, uint8_t* buf, int32_t buflen)
                 int32_t n_rets;
                 phandle arg1;
                 char* arg2;
-                uint8_t* arg3;
+                void* arg3;
                 int32_t arg4;
                 int32_t ret;
         } ofw_arg;
@@ -105,7 +105,7 @@ int32_t getprop(phandle node, char* name, uint8_t* buf, int32_t buflen)
         return ofw_arg.ret;
 }
 
-int32_t nextprop(phandle node, char* previous, uint8_t* buf)
+int32_t nextprop(phandle node, char* previous, void* buf)
 {
         struct
         {
@@ -114,7 +114,7 @@ int32_t nextprop(phandle node, char* previous, uint8_t* buf)
                 int32_t n_rets;
                 phandle arg1;
                 char* arg2;
-                uint8_t* arg3;
+                void* arg3;
                 int32_t ret;
         } ofw_arg;
 
@@ -128,7 +128,7 @@ int32_t nextprop(phandle node, char* previous, uint8_t* buf)
         return ofw_arg.ret;
 }
 
-int32_t setprop(phandle node, char* name, uint8_t* buf, int32_t len)
+int32_t setprop(phandle node, char* name, void* buf, int32_t len)
 {
         struct
         {
@@ -137,7 +137,7 @@ int32_t setprop(phandle node, char* name, uint8_t* buf, int32_t len)
                 int32_t n_rets;
                 phandle arg1;
                 char* arg2;
-                uint8_t* arg3;
+                void* arg3;
                 int32_t arg4;
                 int32_t ret;
         } ofw_arg;
@@ -156,7 +156,7 @@ int32_t setprop(phandle node, char* name, uint8_t* buf, int32_t len)
         return ofw_arg.ret;
 }
   
-int32_t canon(char* device, uint8_t* buf, int32_t buflen)   
+int32_t canon(char* device, void* buf, int32_t buflen)   
 {
         struct
         {
@@ -164,7 +164,7 @@ int32_t canon(char* device, uint8_t* buf, int32_t buflen)
                 int32_t n_args;
                 int32_t n_rets;
                 char* arg1;
-                uint8_t* arg2;
+                void* arg2;
                 int32_t arg3;
                 int32_t ret;
         } ofw_arg;
@@ -198,7 +198,7 @@ phandle finddevice(char* device)
         return ofw_arg.ret;
 }
 
-int32_t instance_to_path(ihandle instance, uint8_t* buf, int32_t buflen)
+int32_t instance_to_path(ihandle instance, void* buf, int32_t buflen)
 {
         struct
         {
@@ -206,7 +206,7 @@ int32_t instance_to_path(ihandle instance, uint8_t* buf, int32_t buflen)
                 int32_t n_args;
                 int32_t n_rets;
                 ihandle arg1;
-                uint8_t* arg2;
+                void* arg2;
                 int32_t arg3;
                 int32_t ret;
         } ofw_arg;
@@ -222,7 +222,7 @@ int32_t instance_to_path(ihandle instance, uint8_t* buf, int32_t buflen)
 
 }
 
-int32_t package_to_path(phandle package, uint8_t* buf, int32_t buflen)
+int32_t package_to_path(phandle package, void* buf, int32_t buflen)
 {
         struct
         {
@@ -230,7 +230,7 @@ int32_t package_to_path(phandle package, uint8_t* buf, int32_t buflen)
                 int32_t n_args;
                 int32_t n_rets;
                 ihandle arg1;
-                uint8_t* arg2;
+                void* arg2;
                 int32_t arg3;
                 int32_t ret;
         } ofw_arg;
