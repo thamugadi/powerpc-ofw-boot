@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int32_t* retaddr)
+void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args, int32_t* retaddr)
 {
         struct
         {
@@ -12,10 +12,10 @@ void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int32_t* retad
                 char* arg1;
                 int32_t argN[n_stack_args];
                 int32_t ret1;
-                int32_t retN[16];
+                int32_t retN[n_ret_args];
         } ofw_arg;
 
-        SERVICE("interpret", 10, 1+n_stack_args, 16);
+        SERVICE("interpret", 10, 1+n_stack_args, n_ret_args);
 
         ofw_arg.arg1 = cmd;
 
@@ -27,9 +27,8 @@ void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int32_t* retad
 
         ofw(&ofw_arg);
 
-
         *retaddr = ofw_arg.ret1;
-        for (i = 1; i < 17; i++)
+        for (i = 1; i < n_ret_args+1; i++)
         {
                 retaddr[i] = ofw_arg.retN[i];
         }
