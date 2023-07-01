@@ -246,7 +246,7 @@ int32_t package_to_path(phandle package, void* buf, int32_t buflen)
 
 }
 
-void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n_stack_args)
+void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n_stack_args, int32_t* retaddr)
 {
 	struct
 	{
@@ -273,7 +273,7 @@ void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n
 
 	ofw(&ofw_arg);
 
-	int32_t* addr = claim((int32_t*)0x04000000, 17, 1);
+	int32_t* addr = claim(retaddr, 17, 1);
 
 	*addr = ofw_arg.ret1;
 	for (i = 1; i < 17; i++)
