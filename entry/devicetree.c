@@ -2,50 +2,27 @@
 
 extern void (*ofw)();
 
-int ofw_test(char* name)
+phandle child(phandle _child)
 {
-        struct 
+        struct
         {
                 char* service;
                 int n_args;
                 int n_rets;
-                char* arg;
-                int ret;
+                phandle arg;
+                phandle ret;
         } ofw_arg;
 
-        char _service[5] = "test";
+        char _service[6] = "child";
         ofw_arg.service = _service;
 
         ofw_arg.n_args = 1;
         ofw_arg.n_rets = 1;
-        ofw_arg.arg = name;
+        ofw_arg.arg = _child;
 
         ofw(&ofw_arg);
 
         return ofw_arg.ret;
-}
-
-phandle child(phandle _child)
-{
-	struct
-	{
-		char* service;
-		int n_args;
-		int n_rets;
-		phandle arg;
-		phandle ret;
-	} ofw_arg;
-
-	char _service[6] = "child";
-	ofw_arg.service = _service;
-
-	ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
-	ofw_arg.arg = _child;
-
-	ofw(&ofw_arg);
-
-	return ofw_arg.ret;
 }
 
 phandle parent(phandle _parent)
@@ -102,7 +79,7 @@ int getproplen(phandle node, char* name)
                 int n_args;
                 int n_rets;
                 phandle arg1;
-		char* arg2;
+                char* arg2;
                 int ret;
         } ofw_arg;
 
@@ -112,7 +89,7 @@ int getproplen(phandle node, char* name)
         ofw_arg.n_args = 2;
         ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
-	ofw_arg.arg2 = name;
+        ofw_arg.arg2 = name;
 
         ofw(&ofw_arg);
         return ofw_arg.ret;
@@ -126,9 +103,9 @@ int getprop(phandle node, char* name, uint8_t* buf, int buflen)
                 int n_args;
                 int n_rets;
                 phandle arg1;
-		char* arg2;
-		uint8_t* arg3;
-		int arg4;
+                char* arg2;
+                uint8_t* arg3;
+                int arg4;
                 int ret;
         } ofw_arg;
 
@@ -139,8 +116,8 @@ int getprop(phandle node, char* name, uint8_t* buf, int buflen)
         ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
         ofw_arg.arg2 = name;
-	ofw_arg.arg3 = buf;
-	ofw_arg.arg4 = buflen;
+        ofw_arg.arg3 = buf;
+        ofw_arg.arg4 = buflen;
 
         ofw(&ofw_arg);
         return ofw_arg.ret;
@@ -305,3 +282,4 @@ int package_to_path(phandle package, uint8_t* buf, int buflen)
 void* call_method(char* method, ihandle instance, ...)
 {
 }
+
