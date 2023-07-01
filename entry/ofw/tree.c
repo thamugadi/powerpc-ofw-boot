@@ -246,7 +246,41 @@ int32_t package_to_path(phandle package, void* buf, int32_t buflen)
 
 }
 
-void* call_method(char* method, ihandle instance, ...)
+void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n_stack_args)
 {
+	struct
+	{
+		char* service;
+		int32_t n_args;
+		int32_t n_rets;
+		char* arg1;
+		ihandle arg2;
+		int32_t argN[n_stack_args];
+		int32_t ret1;
+		int32_t retN[16];
+	} ofw_arg;
+
+	SERVICE("call-method", 12, 2+n_stack_args, 16);
+
+	ofw_arg.arg1 = method;
+	ofw_arg.arg2 = instance;
+
+	int i;
+	for (i = 0; i < n_stack_args; i++)
+	{
+		ofw_arg.argN[i] = stack_args[i];
+	}
+
+	ofw(&ofw_arg);
+
+	int32_t* addr = claim((int32_t*)0x04000000, 17, 1);
+
+	*addr = ofw_arg.ret1;
+	for (i = 1; i < 17; i++)
+	{
+		addr[i] = ofw_arg.retN[i];
+	}
+
+	return addr;
 }
 
