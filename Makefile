@@ -5,10 +5,9 @@ RES = 1600x900x32
 
 SOURCES_C = $(wildcard entry/*.c)
 SOURCES_S = $(wildcard entry/*.s)
-
 OBJECTS = $(SOURCES_C:.c=.elf) $(SOURCES_S:.s=.elf)
 
-.PHONY: all clean run debug beige
+.PHONY: clean run debug beige
 
 DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
 	dd bs=512K count=2 if=/dev/zero of=DISK.APM
@@ -28,7 +27,7 @@ bootinfo.txt: loader/load.fth loader/def.fth
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 
 kernel.elf: $(OBJECTS)
-	$(PPC)-ld -Ttext=0x200000 -Tdata=0x300000 $^ -o $@
+	$(PPC)-ld -Ttext=0x200000 -Tdata=0x300100 $^ -o $@
 
 %.elf: %.c
 	$(PPC)-gcc -c $< -o $@
