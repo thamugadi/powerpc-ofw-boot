@@ -1,4 +1,6 @@
-#include "boot.h"
+void (*ofw)();
+void __eabi();
+
 void __stack_chk_fail_local(void)
 {
 }

@@ -30,7 +30,7 @@ kernel.elf: $(OBJECTS)
 	$(PPC)-ld -Ttext=0x200000 -Tdata=0x300100 $^ -o $@
 
 %.elf: %.c
-	$(PPC)-gcc -c $< -o $@
+	$(PPC)-gcc -I include -c $< -o $@
 
 %.elf: %.s
 	$(PPC)-as -c $< -o $@

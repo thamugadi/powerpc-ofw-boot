@@ -1,5 +1,3 @@
-void (*ofw)();
-void __eabi();
-
+#include <stdint.h>
 typedef int phandle;
 typedef int ihandle;
