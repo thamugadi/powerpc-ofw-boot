@@ -246,7 +246,7 @@ int32_t package_to_path(phandle package, void* buf, int32_t buflen)
 
 }
 
-void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n_stack_args, int32_t* retaddr)
+void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n_stack_args, int32_t n_ret_args, int32_t* retaddr)
 {
 	struct
 	{
@@ -257,10 +257,10 @@ void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n
 		ihandle arg2;
 		int32_t argN[n_stack_args];
 		int32_t ret1;
-		int32_t retN[16];
+		int32_t retN[n_ret_args];
 	} ofw_arg;
 
-	SERVICE("call-method", 12, 2+n_stack_args, 16);
+	SERVICE("call-method", 12, 2+n_stack_args, n_ret_args);
 
 	ofw_arg.arg1 = method;
 	ofw_arg.arg2 = instance;
@@ -274,7 +274,7 @@ void* call_method(char* method, ihandle instance, int32_t* stack_args, int32_t n
 	ofw(&ofw_arg);
 
 	*retaddr = ofw_arg.ret1;
-	for (i = 1; i < 17; i++)
+	for (i = 1; i < n_ret_args+1; i++)
 	{
 		retaddr[i] = ofw_arg.retN[i];
 	}
