@@ -6,9 +6,9 @@ void __eabi(void)
 {
 }
 
-int test(const char* name)
+int ofw_test(const char* name)
 {
-	struct
+	struct 
 	{
 		char* service;
 		int n_args;
@@ -17,7 +17,7 @@ int test(const char* name)
 		int ret;
 	} ofw_arg;
 
-	const char _service[5] = "test";
+	char _service[5] = "test";
 	ofw_arg.service = _service;
 
 	ofw_arg.n_args = 1;
@@ -32,7 +32,7 @@ int test(const char* name)
 void main(void)
 {
 	asm volatile("stw 5, %0" : "=m"(ofw));
-	if (test("open"))
+	if (ofw_test("open"))
 	{
 		asm("mr 27, 28");
 		asm("b $");
