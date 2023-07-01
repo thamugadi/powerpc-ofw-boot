@@ -3,17 +3,17 @@ PPC = powerpc-eabi
 QEMU = qemu-system-ppc
 RES = 1600x900x32
 
-SOURCES_C = $(shell find entry -name "*.c")
-SOURCES_S = $(shell find entry -name "*.s")
+SOURCES_C = $(shell find src -name "*.c")
+SOURCES_S = $(shell find src -name "*.s")
 OBJECTS = $(SOURCES_C:.c=.elf) $(SOURCES_S:.s=.elf)
 
 .PHONY: clean run debug beige
 
-DISK.APM: kernel.elf bootinfo.txt scripts/kpartx.sh
+DISK.APM: kernel.elf bootinfo.txt kpartx/kpartx.sh
 	dd bs=512K count=2 if=/dev/zero of=DISK.APM
 	parted DISK.APM --script mklabel mac mkpart primary hfs+ 32.8KB 100%
-	sudo chmod +x scripts/kpartx.sh
-	sudo ./scripts/kpartx.sh
+	sudo chmod +x kpartx/kpartx.sh
+	sudo ./kpartx/kpartx.sh
 	sudo mkdir -p /mnt/ppc /mnt/boot
 	sudo cp bootinfo.txt /mnt/ppc
 	sudo cp kernel.elf /mnt/boot
@@ -37,7 +37,7 @@ kernel.elf: $(OBJECTS)
 
 clean:
 	rm -f *.APM *txt
-	find entry -name "*.elf" -type f -delete
+	find src -name "*.elf" -type f -delete
 
 run:
 	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE)
