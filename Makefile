@@ -27,7 +27,7 @@ bootinfo.txt: loader/load.fth loader/def.fth
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 
 kernel.elf: $(OBJECTS)
-	$(PPC)-ld -Ttext=0x200000 -Tdata=0x300100 $^ -o $@
+	$(PPC)-ld -Ttext=0x02000000 -Tdata=0x02100000 $^ -o $@
 
 %.elf: %.c
 	$(PPC)-gcc -I include -c $< -o $@
