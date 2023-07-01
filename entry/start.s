@@ -1,5 +1,4 @@
 .globl _start
+.globl ofw
 _start:
-stwu 1, -0x7fff(1)
-
-b main 
+b main

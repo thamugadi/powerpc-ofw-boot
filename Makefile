@@ -19,8 +19,8 @@ bootinfo.txt: loader/load.fth loader/def.fth
 	cat loader/load.fth >> bootinfo.txt
 	echo "</boot-script></chrp-boot>" >> bootinfo.txt
 kernel.elf: start.elf boot.elf 
-	$(PPC)-ld -Ttext=0x200000 start.elf boot.elf -o kernel.elf
-boot.elf: entry/boot.c 
+	$(PPC)-ld -Ttext=0x200000 -Tdata=0x300000 start.elf boot.elf -o kernel.elf
+boot.elf: entry/boot.c entry/boot.h 
 	$(PPC)-gcc -c entry/boot.c -o boot.elf
 start.elf: entry/start.s
 	$(PPC)-as -c entry/start.s -o start.elf

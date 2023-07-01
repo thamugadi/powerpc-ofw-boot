@@ -1,5 +1,4 @@
-: initmsg ." powerpc-ofw-boot : Booting through OpenFirmware..." cr ;
-: startmsg ." Running Game of Life..." cr ;
+: initmsg ." powerpc-ofw-boot" cr ;
 : sup - dup abs = ;
 : inf dup sup 1 + ; 
 : diff = if 0 else -1 then ;
