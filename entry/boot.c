@@ -10,7 +10,7 @@ void __eabi(void)
 
 void main(void)
 {
-	if (ofw_test("open"))
+	if (test("open"))
 	{
 		asm("mr 27, 28");
 		asm("b $");
