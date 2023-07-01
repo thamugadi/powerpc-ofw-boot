@@ -13,15 +13,11 @@ phandle child(phandle _child)
                 phandle ret;
         } ofw_arg;
 
-        char _service[6] = "child";
-        ofw_arg.service = _service;
+	SERVICE("child", 6, 1, 1);
 
-        ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg = _child;
 
         ofw(&ofw_arg);
-
         return ofw_arg.ret;
 }
 
@@ -36,15 +32,11 @@ phandle parent(phandle _parent)
                 phandle ret;
         } ofw_arg;
 
-        char _service[7] = "parent";
-        ofw_arg.service = _service;
+	SERVICE("parent", 7, 1, 1);
 
-        ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg = _parent;
 
         ofw(&ofw_arg);
-
         return ofw_arg.ret;
 }
 
@@ -59,15 +51,11 @@ phandle instance_to_package(ihandle _instance)
                 phandle ret;
         } ofw_arg;
 
-        char _service[20] = "instance-to-package";
-        ofw_arg.service = _service;
+	SERVICE("instance-to-package", 20, 1, 1);
 
-        ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg = _instance;
 
         ofw(&ofw_arg);
-
         return ofw_arg.ret;
 }
 
@@ -83,11 +71,8 @@ int getproplen(phandle node, char* name)
                 int ret;
         } ofw_arg;
 
-        char _service[11] = "getproplen";
-        ofw_arg.service = _service;
+	SERVICE("getproplen", 11, 2, 1);
 
-        ofw_arg.n_args = 2;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
         ofw_arg.arg2 = name;
 
@@ -109,11 +94,8 @@ int getprop(phandle node, char* name, uint8_t* buf, int buflen)
                 int ret;
         } ofw_arg;
 
-        char _service[8] = "getprop";
-        ofw_arg.service = _service;
+	SERVICE("getprop", 8, 4, 1);
 
-        ofw_arg.n_args = 4;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
         ofw_arg.arg2 = name;
         ofw_arg.arg3 = buf;
@@ -136,11 +118,8 @@ int nextprop(phandle node, char* previous, uint8_t* buf)
                 int ret;
         } ofw_arg;
 
-        char _service[9] = "nextprop";
-        ofw_arg.service = _service;
+	SERVICE("nextprop", 9, 3, 1);
 
-        ofw_arg.n_args = 3;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
         ofw_arg.arg2 = previous;
         ofw_arg.arg3 = buf;
@@ -190,11 +169,8 @@ int canon(char* device, uint8_t* buf, int buflen)
                 int ret;
         } ofw_arg;
 
-        char _service[6] = "canon";
-        ofw_arg.service = _service;
+	SERVICE("canon", 6, 3, 1);
 
-        ofw_arg.n_args = 3;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = device;
         ofw_arg.arg2 = buf;
         ofw_arg.arg3 = buflen;
@@ -214,11 +190,8 @@ phandle finddevice(char* device)
                 int ret;
         } ofw_arg;
 
-        char _service[11] = "finddevice";
-        ofw_arg.service = _service;
+	SERVICE("finddevice", 11, 1, 1);
 
-        ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = device;
 
         ofw(&ofw_arg);
@@ -238,11 +211,8 @@ int instance_to_path(ihandle instance, uint8_t* buf, int buflen)
                 int ret;
         } ofw_arg;
 
-        char _service[17] = "instance-to-path";
-        ofw_arg.service = _service;
+	SERVICE("instance-to-path", 17, 3, 1);
 
-        ofw_arg.n_args = 3;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = instance;
         ofw_arg.arg2 = buf;
         ofw_arg.arg3 = buflen;
@@ -265,11 +235,8 @@ int package_to_path(phandle package, uint8_t* buf, int buflen)
                 int ret;
         } ofw_arg;
 
-        char _service[16] = "package-to-path";
-        ofw_arg.service = _service;
+	SERVICE("package-to-path", 16, 3, 1);
 
-        ofw_arg.n_args = 3;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = package;
         ofw_arg.arg2 = buf;
         ofw_arg.arg3 = buflen;

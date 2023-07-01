@@ -13,15 +13,11 @@ int ofw_test(char* name)
                 int ret;
         } ofw_arg;
 
-        char _service[5] = "test";
-        ofw_arg.service = _service;
+	SERVICE("test", 5, 1, 1);
 
-        ofw_arg.n_args = 1;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg = name;
 
         ofw(&ofw_arg);
-
         return ofw_arg.ret;
 }
 
