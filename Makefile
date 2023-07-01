@@ -3,8 +3,8 @@ PPC = powerpc-eabi
 QEMU = qemu-system-ppc
 RES = 1600x900x32
 
-SOURCES_C = $(wildcard entry/*.c)
-SOURCES_S = $(wildcard entry/*.s)
+SOURCES_C = $(shell find entry -name "*.c")
+SOURCES_S = $(shell find entry -name "*.s")
 OBJECTS = $(SOURCES_C:.c=.elf) $(SOURCES_S:.s=.elf)
 
 .PHONY: clean run debug beige
@@ -36,7 +36,8 @@ kernel.elf: $(OBJECTS)
 	$(PPC)-as -c $< -o $@
 
 clean:
-	rm -f *.APM *elf *txt 
+	rm -f *.APM *txt
+	find entry -name "*.elf" -type f -delete
 
 run:
 	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE)
