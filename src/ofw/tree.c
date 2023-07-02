@@ -142,11 +142,8 @@ int32_t ofw_setprop(phandle node, char* name, void* buf, int32_t len)
                 int32_t ret;
         } ofw_arg;
 
-        char _service[8] = "setprop";
-        ofw_arg.service = _service;
+	SERVICE("setprop", 8, 4, 1);
 
-        ofw_arg.n_args = 4;
-        ofw_arg.n_rets = 1;
         ofw_arg.arg1 = node;
         ofw_arg.arg2 = name;
         ofw_arg.arg3 = buf;
