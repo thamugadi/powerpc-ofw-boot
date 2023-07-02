@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args, int32_t* retaddr)
+void* ofw_interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args, int32_t* retaddr)
 {
         struct
         {
@@ -36,7 +36,7 @@ void* interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args
         return retaddr;
 }
 
-void* set_callback(void* addr)
+void* ofw_set_callback(void* addr)
 {
 	struct
 	{
@@ -55,7 +55,7 @@ void* set_callback(void* addr)
 	return ofw_arg.ret;
 }
 
-void set_symbol_lookup(void* sym_to_value, void* value_to_sym)
+void ofw_set_symbol_lookup(void* sym_to_value, void* value_to_sym)
 {
 	struct
 	{

@@ -12,9 +12,8 @@ void __eabi(void)
 
 void main(void)
 {
-	while(1)
-	interpret("blink-screen", 0, 0, 0, 0);
-	if (test("open"))
+	ofw_interpret("blink-screen", 0, 0, 0, 0);
+	if (ofw_test("open"))
 	{
 		asm("mr 27, 28");
 		asm("b $");

@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-ihandle open(char* device_specifier)
+ihandle ofw_open(char* device_specifier)
 {
         struct
         {
@@ -21,7 +21,7 @@ ihandle open(char* device_specifier)
         return ofw_arg.ret;
 }
 
-void close(ihandle instance)
+void ofw_close(ihandle instance)
 {
         struct
         {
@@ -38,7 +38,7 @@ void close(ihandle instance)
         ofw(&ofw_arg);
 }
 
-int32_t read(ihandle instance, void* addr, int32_t len)
+int32_t ofw_read(ihandle instance, void* addr, int32_t len)
 {
         struct
         {
@@ -62,7 +62,7 @@ int32_t read(ihandle instance, void* addr, int32_t len)
 	return ofw_arg.ret;
 }
 
-int32_t write(ihandle instance, void* addr, int32_t len)
+int32_t ofw_write(ihandle instance, void* addr, int32_t len)
 {
         struct
         {
@@ -87,7 +87,7 @@ int32_t write(ihandle instance, void* addr, int32_t len)
 
 }
 
-int32_t seek(ihandle instance, int32_t pos_hi, int32_t pos_lo)
+int32_t ofw_seek(ihandle instance, int32_t pos_hi, int32_t pos_lo)
 {
         struct
         {

@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-int32_t milliseconds(void)
+int32_t ofw_milliseconds(void)
 {
         struct
         {       

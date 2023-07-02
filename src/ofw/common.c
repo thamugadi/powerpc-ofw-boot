@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-int32_t test(char* name)
+int32_t ofw_test(char* name)
 {
         struct 
         {

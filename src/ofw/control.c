@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-void boot(char* bootspec)
+void ofw_boot(char* bootspec)
 {
         struct
         {
@@ -19,7 +19,7 @@ void boot(char* bootspec)
         ofw(&ofw_arg);
 }
 
-void enter(void)
+void ofw_enter(void)
 {
 	struct
 	{
@@ -47,7 +47,7 @@ void ofw_exit(void)
         ofw(&ofw_arg);
 }
 
-void chain(void* virt, int32_t size, void* entry, void* args, int32_t len)
+void ofw_chain(void* virt, int32_t size, void* entry, void* args, int32_t len)
 {
 	struct
 	{

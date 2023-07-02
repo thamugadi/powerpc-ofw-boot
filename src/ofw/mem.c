@@ -2,7 +2,7 @@
 
 extern void (*ofw)();
 
-void* claim(void* virt, int32_t size, int32_t align)
+void* ofw_claim(void* virt, int32_t size, int32_t align)
 {
         struct
         {
@@ -26,7 +26,7 @@ void* claim(void* virt, int32_t size, int32_t align)
 }
 
     
-void release(void* virt, int32_t size)
+void ofw_release(void* virt, int32_t size)
 {
         struct
         {  
