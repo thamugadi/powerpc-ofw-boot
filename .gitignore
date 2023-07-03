@@ -1,4 +1,4 @@
 *.elf
 *.bin
-DISK.APM
-*.txt
+*.APM
+bootinfo.txt
