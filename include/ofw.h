@@ -6,5 +6,5 @@
         ofw_arg.n_args = args; \
         ofw_arg.n_rets = rets;
 
-typedef int phandle;
-typedef int ihandle;
+typedef int32_t phandle;
+typedef int32_t ihandle;
