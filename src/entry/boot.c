@@ -13,6 +13,7 @@ void __eabi(void)
 //void* ofw_interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args, int32_t* reta
 void main(void)
 {
+	ofw_interpret("show-devs", 0, 0, 0, 0);
 	puts("Press any key to continue", 25);
 	ofw_interpret("blink-screen", 0, 0, 0, 0);
 	ofw_interpret("key", 0, 0, 1, (int32_t*)0x03020000);

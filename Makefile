@@ -2,7 +2,7 @@ MACHINE = mac99
 PPC = powerpc-eabi
 QEMU = qemu-system-ppc
 RES = 1600x900x32
-
+CPU = g4
 SOURCES_C = $(shell find src -name "*.c")
 SOURCES_S = $(shell find src -name "*.s")
 OBJECTS = $(SOURCES_C:.c=.elf) $(SOURCES_S:.s=.elf)
@@ -40,7 +40,9 @@ clean:
 	find src -name "*.elf" -type f -delete
 
 run:
-	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE)
+	$(QEMU) -hda *.APM -g $(RES) -machine $(MACHINE) -cpu $(CPU)
 
 debug:
-	$(QEMU) -hda *.APM -d in_asm -g $(RES) -machine $(MACHINE)
+	$(QEMU) -hda *.APM -d in_asm -g $(RES) -machine $(MACHINE) -cpu $(CPU)
+gdb:
+	$(QEMU) -hda *.APM -s -S -g $(RES) -machine $(MACHINE) -cpu $(CPU)

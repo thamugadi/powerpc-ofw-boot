@@ -3,7 +3,7 @@
 : inf dup sup 1 + ; 
 : diff = if 0 else -1 then ;
 : fba frame-buffer-adr ;
-: beige-vram 80000000 ; : mac99-vram 81000000 ;
+: beige-fba 80000000 ; : mac99-fba 81000000 ;
 : hardware-error ." Hardware not supported." cr ;
 : beige-message  ." Beige hardware detected" cr ;
 : mac99-message  ." mac99 hardware detected" cr ;
