@@ -3,3 +3,5 @@
 *.APM
 bootinfo.txt
 *.json
+.cache
+*.idx
