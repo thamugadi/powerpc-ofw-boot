@@ -103,7 +103,7 @@ int32_t ofw_seek(ihandle instance, int32_t pos_hi, int32_t pos_lo)
         SERVICE("seek", 5, 3, 1);
         
         ofw_arg.arg1 = instance;
-        ofw_arg.arg2 = pos_hi;
+        ofw_arg.arg2 = (int32_t*)pos_hi;
         ofw_arg.arg3 = pos_lo;
         
         ofw(&ofw_arg);

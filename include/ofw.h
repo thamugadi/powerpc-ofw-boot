@@ -8,3 +8,8 @@
 
 typedef int32_t phandle;
 typedef int32_t ihandle;
+
+void puts(char* str, int len);
+
+void* ofw_interpret(char* cmd, int32_t* stack_args, int n_stack_args, int n_ret_args, int32_t* retaddr);
+int32_t ofw_test(char* name);
