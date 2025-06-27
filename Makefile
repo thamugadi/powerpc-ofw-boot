@@ -21,10 +21,10 @@ DISK.APM: kernel.elf bootinfo.txt kpartx/kpartx.sh
 	sudo kpartx -d DISK.APM
 
 bootinfo.txt: loader/load.fth loader/def.fth
-	echo "<chrp-boot><boot-script>" >> bootinfo.txt
-	cat loader/def.fth >> bootinfo.txt
-	cat loader/load.fth >> bootinfo.txt
-	echo "</boot-script></chrp-boot>" >> bootinfo.txt
+	echo "<chrp-boot><boot-script>" > $@ 
+	cat loader/def.fth >> $@
+	cat loader/load.fth >> $@ 
+	echo "</boot-script></chrp-boot>" >> $@ 
 
 kernel.elf: linker.ld $(OBJECTS)
 	$(PPC)-ld -T $^ -o $@
@@ -36,7 +36,7 @@ kernel.elf: linker.ld $(OBJECTS)
 	$(PPC)-as -c $< -o $@
 
 clean:
-	rm -f *.APM *txt
+	rm -f *.APM *.txt *.elf
 	find src -name "*.elf" -type f -delete
 
 run:
