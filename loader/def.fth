@@ -1,7 +1,4 @@
 : initmsg ." powerpc-ofw-boot" cr ;
-: sup - dup abs = ;
-: inf dup sup 1 + ; 
-: diff = if 0 else -1 then ;
 : fba frame-buffer-adr ;
 : beige-fba 80000000 ; : mac99-fba 81000000 ;
 : hardware-error ." Hardware not supported." cr ;
