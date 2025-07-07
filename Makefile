@@ -5,6 +5,7 @@ RES = 1600x900x32
 CPU = g4
 SOURCES_C = $(shell find src -name "*.c")
 SOURCES_S = $(shell find src -name "*.s")
+
 OBJECTS = $(SOURCES_C:.c=.elf) $(SOURCES_S:.s=.elf)
 
 .PHONY: clean run debug beige
@@ -20,11 +21,10 @@ DISK.APM: kernel.elf bootinfo.txt kpartx/kpartx.sh
 	sudo umount /mnt/
 	sudo kpartx -d DISK.APM
 
-bootinfo.txt: loader/load.fth loader/def.fth
-	echo "<chrp-boot><boot-script>" > $@ 
-	sed 's/>/\&gt;/g; s/</\&lt;/g' loader/def.fth >> $@
-	sed 's/>/\&gt;/g; s/</\&lt;/g' loader/load.fth >> $@
-	echo "</boot-script></chrp-boot>" >> $@ 
+bootinfo.txt: loader/def.fth loader/load.fth
+	@echo "<chrp-boot><boot-script>" > $@ 
+	@sed 's/>/\&gt;/g; s/</\&lt;/g' $^ >> $@
+	@echo "</boot-script></chrp-boot>" >> $@ 
 
 kernel.elf: linker.ld $(OBJECTS)
 	$(PPC)-ld -T $^ -o $@
