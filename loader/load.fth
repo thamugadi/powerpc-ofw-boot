@@ -7,6 +7,6 @@ fba mac99-fba = if screen-width  4 mac99-fba + l! then
 fba mac99-fba = if screen-height 8 mac99-fba + l! then
 variable run
 -1 run !
-fba beige-fba diff fba mac99-fba diff and if hardware-error 0 run ! then
+fba beige-fba <> fba mac99-fba <> and if hardware-error 0 run ! then
 run @ 0 = if 1 0 do 0 +loop then
 boot hd:,\boot\kernel.elf
