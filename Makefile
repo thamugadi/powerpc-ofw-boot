@@ -25,7 +25,7 @@ bootinfo.txt: loader/def.fth loader/load.fth
 	@echo "<CHRP-BOOT><COMPATIBLE>MacRisc MacRisc3 MacRisc4</COMPATIBLE><BOOT-SCRIPT>" > $@ 
 	@sed 's/>/\&gt;/g; s/</\&lt;/g' $^ >> $@
 	@echo "</BOOT-SCRIPT></CHRP-BOOT>" >> $@ 
-	@printf "\0" >> $@
+	@printf "\4" >> $@
 
 kernel.elf: linker.ld $(OBJECTS)
 	$(PPC)-ld -T $^ -o $@
