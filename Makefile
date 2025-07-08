@@ -25,6 +25,7 @@ bootinfo.txt: loader/def.fth loader/load.fth
 	@echo "<chrp-boot><boot-script>" > $@ 
 	@sed 's/>/\&gt;/g; s/</\&lt;/g' $^ >> $@
 	@echo "</boot-script></chrp-boot>" >> $@ 
+	@printf "\0" >> $@
 
 kernel.elf: linker.ld $(OBJECTS)
 	$(PPC)-ld -T $^ -o $@
