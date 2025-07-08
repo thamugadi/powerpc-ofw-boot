@@ -22,7 +22,7 @@ DISK.APM: kernel.elf bootinfo.txt kpartx/kpartx.sh
 	sudo kpartx -d DISK.APM
 
 bootinfo.txt: loader/def.fth loader/load.fth
-	@echo "<CHRP-BOOT><BOOT-SCRIPT>" > $@ 
+	@echo "<CHRP-BOOT><COMPATIBLE>MacRisc MacRisc3 MacRisc4</COMPATIBLE><BOOT-SCRIPT>" > $@ 
 	@sed 's/>/\&gt;/g; s/</\&lt;/g' $^ >> $@
 	@echo "</BOOT-SCRIPT></CHRP-BOOT>" >> $@ 
 	@printf "\0" >> $@
