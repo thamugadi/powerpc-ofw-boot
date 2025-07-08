@@ -22,9 +22,9 @@ DISK.APM: kernel.elf bootinfo.txt kpartx/kpartx.sh
 	sudo kpartx -d DISK.APM
 
 bootinfo.txt: loader/def.fth loader/load.fth
-	@echo "<chrp-boot><boot-script>" > $@ 
+	@echo "<CHRP-BOOT><BOOT-SCRIPT>" > $@ 
 	@sed 's/>/\&gt;/g; s/</\&lt;/g' $^ >> $@
-	@echo "</boot-script></chrp-boot>" >> $@ 
+	@echo "</BOOT-SCRIPT></CHRP-BOOT>" >> $@ 
 	@printf "\0" >> $@
 
 kernel.elf: linker.ld $(OBJECTS)
