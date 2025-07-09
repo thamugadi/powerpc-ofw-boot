@@ -1,12 +1,24 @@
-initmsg
-fba beige-fba = if beige-message beige-magic-number beige-fba c! then 
-fba mac99-fba = if mac99-message mac99-magic-number mac99-fba c! then
-fba beige-fba = if screen-width  4 beige-fba + l! then
-fba beige-fba = if screen-height 8 beige-fba + l! then
-fba mac99-fba = if screen-width  4 mac99-fba + l! then
-fba mac99-fba = if screen-height 8 mac99-fba + l! then
+true to use-console?
+false to ignore-output?
+stdout @ 0= if
+" screen" output
+install-console
+then
+." hello!! :D" cr
+
+: loader-location " :2,\boot\kernel.elf" ;
+
+" dir " encode-bytes " &device;" encode-bytes 
+encode+
+" :2,\" encode-bytes encode+
+evaluate
+
+" load &device;" encode-bytes
+loader-location encode-bytes
+encode+
+evaluate
+go
+
 variable run
--1 run !
-fba beige-fba <> fba mac99-fba <> and if hardware-error 0 run ! then
-run @ 0 = if 1 0 do 0 +loop then
-boot hd:,\boot\kernel.elf
+0 run !
+run @ 0 = if 1 0 do 0 +loop then 
